@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — CoastalAI Research</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .map-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(13,148,136,0.06), rgba(12,106,154,0.06));
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">&#x1F30A;</div>
+        CoastalAI
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="domain.html">Domain</a></li>
+        <li><a href="milestones.html">Milestones</a></li>
+        <li><a href="documents.html">Documents</a></li>
+        <li><a href="slides.html">Slides</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header" id="top">
+    <div class="container">
+      <span class="section-label">Get In Touch</span>
+      <h1>Contact Us</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</p>
+    </div>
+    <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#f8fafb"/></svg></div>
+  </div>
+
+  <!-- Contact Content -->
+  <section class="content-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Contact Information -->
+        <div class="card contact-info-card">
+          <h3>Contact Information</h3>
+          <p style="color: var(--text-body); font-size: 0.95rem; margin-bottom: 2rem;">
+            Reach out to the CoastalAI research team for collaboration, questions, or feedback about our coastal erosion forecasting framework.
+          </p>
+
+          <div class="contact-detail">
+            <div class="icon">&#9993;</div>
+            <div class="text">
+              <h4>General Email</h4>
+              <p>coastalai.research@university.lk</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="icon">&#128222;</div>
+            <div class="text">
+              <h4>Phone</h4>
+              <p>+94 11 XXX XXXX</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="icon">&#127963;</div>
+            <div class="text">
+              <h4>Department</h4>
+              <p>Department of Computer Science &amp; Software Engineering<br>Faculty of Computing</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="icon">&#128205;</div>
+            <div class="text">
+              <h4>Address</h4>
+              <p>SLIIT, New Kandy Road,<br>Malabe, Sri Lanka</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="icon">&#128337;</div>
+            <div class="text">
+              <h4>Office Hours</h4>
+              <p>Monday &ndash; Friday: 9:00 AM &ndash; 5:00 PM</p>
+            </div>
+          </div>
+
+          <!-- Team Emails -->
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+            <h4 style="font-size: 0.95rem; color: var(--text-heading); margin-bottom: 1rem;">Team Members</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 1 &mdash; member1@university.lk</p>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 2 &mdash; member2@university.lk</p>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 3 &mdash; member3@university.lk</p>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 4 &mdash; member4@university.lk</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card contact-form-card">
+          <h3>&#9993; Send us a Message</h3>
+          <p style="color: var(--text-body); font-size: 0.92rem; margin-bottom: 1.5rem;">
+            Fill out the form below and we'll get back to you as soon as possible.
+          </p>
+
+          <form action="#" method="POST" onsubmit="return handleSubmit(event);">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject...</option>
+                <option value="collaboration">Research Collaboration</option>
+                <option value="question">General Question</option>
+                <option value="data">Data Request</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">&#9993; Send Message</button>
+          </form>
+
+          <p id="formSuccess" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(13,148,136,0.08); border: 1px solid rgba(13,148,136,0.15); border-radius: 10px; color: var(--teal); text-align: center; font-weight: 600;">
+            &#10004; Thank you! Your message has been received. We'll respond shortly.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-brand">&#127754; CoastalAI</div>
+          <p class="footer-text">Ensemble Threshold Detection &amp; Multi-Horizon Erosion Forecasting</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="domain.html">Domain</a></li>
+          <li><a href="milestones.html">Milestones</a></li>
+          <li><a href="documents.html">Documents</a></li>
+          <li><a href="slides.html">Slides</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.5rem 0;">
+      <p class="footer-text" style="text-align: center;">&copy; 2025 CoastalAI Research Team. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#top" class="back-to-top" title="Back to top">&#8593;</a>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+    window.addEventListener('scroll', function() {
+      var n = document.getElementById('navbar');
+      if (window.scrollY > 50) n.classList.add('scrolled');
+      else n.classList.remove('scrolled');
+    });
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('formSuccess').style.display = 'block';
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>

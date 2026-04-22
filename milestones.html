@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milestones — CoastalAI Research</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">&#x1F30A;</div>
+        CoastalAI
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="domain.html">Domain</a></li>
+        <li><a href="milestones.html" class="active">Milestones</a></li>
+        <li><a href="documents.html">Documents</a></li>
+        <li><a href="slides.html">Slides</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header" id="top">
+    <div class="container">
+      <span class="section-label">Project Assessments</span>
+      <h1>Milestones</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Milestones</p>
+    </div>
+    <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#f8fafb"/></svg></div>
+  </div>
+
+  <!-- Milestones Content -->
+  <section class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-desc">Select a milestone from the dropdown below to view assessment details, dates, and marks allocation.</p>
+      </div>
+
+      <!-- Dropdown Milestones -->
+      <div class="dropdown-group">
+
+        <!-- 1. Project Proposal -->
+        <div class="dropdown-item">
+          <input type="checkbox" id="ms1">
+          <label for="ms1" class="dropdown-toggle">
+            <span>&#128203; Project Proposal</span>
+            <span class="arrow">&#9660;</span>
+          </label>
+          <div class="dropdown-content">
+            <p>The project proposal outlines the initial research concept, problem statement, objectives, and proposed methodology for the CoastalAI coastal erosion forecasting framework. This assessment evaluates the feasibility, novelty, and scientific rigor of the proposed approach.</p>
+            <div class="meta">
+              <span>&#128197; <strong>Date:</strong> February 2024</span>
+              <span>&#127942; <strong>Marks:</strong> 12%</span>
+              <span>&#128210; <strong>Type:</strong> Document + Presentation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Progress Presentation 1 -->
+        <div class="dropdown-item">
+          <input type="checkbox" id="ms2">
+          <label for="ms2" class="dropdown-toggle">
+            <span>&#128202; Progress Presentation 1</span>
+            <span class="arrow">&#9660;</span>
+          </label>
+          <div class="dropdown-content">
+            <p>First progress evaluation covering data acquisition from Copernicus Marine Service, DSAS transect processing, and preliminary feature engineering. Demonstrates completion of the data ingestion pipeline and initial exploratory analysis including monsoon-year alignment and monthly forcing extraction.</p>
+            <div class="meta">
+              <span>&#128197; <strong>Date:</strong> June 2024</span>
+              <span>&#127942; <strong>Marks:</strong> 15%</span>
+              <span>&#128210; <strong>Type:</strong> Presentation + Demo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Progress Presentation 2 -->
+        <div class="dropdown-item">
+          <input type="checkbox" id="ms3">
+          <label for="ms3" class="dropdown-toggle">
+            <span>&#128202; Progress Presentation 2</span>
+            <span class="arrow">&#9660;</span>
+          </label>
+          <div class="dropdown-content">
+            <p>Second progress evaluation showcasing the ensemble threshold detection implementation (ROC/Youden, Bayesian Logistic, Profile Likelihood, Mutual Information), Mann-Whitney U feature selection results, and Random Forest classification achieving 100% LOO-CV accuracy. Includes bootstrap stability analysis and preliminary SARIMA model fitting.</p>
+            <div class="meta">
+              <span>&#128197; <strong>Date:</strong> October 2024</span>
+              <span>&#127942; <strong>Marks:</strong> 18%</span>
+              <span>&#128210; <strong>Type:</strong> Presentation + Demo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Final Assessment -->
+        <div class="dropdown-item">
+          <input type="checkbox" id="ms4">
+          <label for="ms4" class="dropdown-toggle">
+            <span>&#127941; Final Assessment</span>
+            <span class="arrow">&#9660;</span>
+          </label>
+          <div class="dropdown-content">
+            <p>Comprehensive final evaluation of the complete CoastalAI framework including multi-horizon forecasting (H6&ndash;H24), per-transect vulnerability mapping across 187 transects, full research paper documentation, and the complete web-based analysis platform. Demonstrates all four research objectives have been achieved.</p>
+            <div class="meta">
+              <span>&#128197; <strong>Date:</strong> January 2025</span>
+              <span>&#127942; <strong>Marks:</strong> 40%</span>
+              <span>&#128210; <strong>Type:</strong> Document + Presentation + Demo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Viva -->
+        <div class="dropdown-item">
+          <input type="checkbox" id="ms5">
+          <label for="ms5" class="dropdown-toggle">
+            <span>&#127891; Viva Voce</span>
+            <span class="arrow">&#9660;</span>
+          </label>
+          <div class="dropdown-content">
+            <p>Individual viva voce examination where each team member defends their contribution to the project. Covers theoretical understanding of the ensemble methods, statistical analysis techniques, ML model choices, and the scientific significance of the inverse forcing-erosion relationship discovery.</p>
+            <div class="meta">
+              <span>&#128197; <strong>Date:</strong> February 2025</span>
+              <span>&#127942; <strong>Marks:</strong> 15%</span>
+              <span>&#128210; <strong>Type:</strong> Oral Examination</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Timeline Visualization -->
+      <div class="section-header" style="margin-top: 4rem;">
+        <span class="section-label">Project Timeline</span>
+        <h2 class="section-title">Assessment Timeline</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item card">
+          <div class="timeline-date">February 2024</div>
+          <h3>Project Proposal</h3>
+          <p style="color: var(--text-body); font-size: 0.92rem;">Initial concept, problem statement &amp; proposed methodology</p>
+          <span class="timeline-marks">12% Marks</span>
+        </div>
+
+        <div class="timeline-item card">
+          <div class="timeline-date">June 2024</div>
+          <h3>Progress Presentation 1</h3>
+          <p style="color: var(--text-body); font-size: 0.92rem;">Data pipeline, feature engineering &amp; exploratory analysis</p>
+          <span class="timeline-marks">15% Marks</span>
+        </div>
+
+        <div class="timeline-item card">
+          <div class="timeline-date">October 2024</div>
+          <h3>Progress Presentation 2</h3>
+          <p style="color: var(--text-body); font-size: 0.92rem;">Ensemble threshold detection &amp; RF classification results</p>
+          <span class="timeline-marks">18% Marks</span>
+        </div>
+
+        <div class="timeline-item card">
+          <div class="timeline-date">January 2025</div>
+          <h3>Final Assessment</h3>
+          <p style="color: var(--text-body); font-size: 0.92rem;">Complete framework, multi-horizon forecasts &amp; vulnerability maps</p>
+          <span class="timeline-marks">40% Marks</span>
+        </div>
+
+        <div class="timeline-item card">
+          <div class="timeline-date">February 2025</div>
+          <h3>Viva Voce</h3>
+          <p style="color: var(--text-body); font-size: 0.92rem;">Individual defense of contributions &amp; theoretical understanding</p>
+          <span class="timeline-marks">15% Marks</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-brand">&#127754; CoastalAI</div>
+          <p class="footer-text">Ensemble Threshold Detection &amp; Multi-Horizon Erosion Forecasting</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="domain.html">Domain</a></li>
+          <li><a href="milestones.html">Milestones</a></li>
+          <li><a href="documents.html">Documents</a></li>
+          <li><a href="slides.html">Slides</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.5rem 0;">
+      <p class="footer-text" style="text-align: center;">&copy; 2025 CoastalAI Research Team. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#top" class="back-to-top" title="Back to top">&#8593;</a>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+    window.addEventListener('scroll', function() {
+      var n = document.getElementById('navbar');
+      if (window.scrollY > 50) n.classList.add('scrolled');
+      else n.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>
