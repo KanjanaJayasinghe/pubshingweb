@@ -1,0 +1,1884 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoastalAI &ndash; Intelligent System for Coastal Erosion Forecasting &amp; Resilient Infrastructure Planning</title>
+  <meta name="description" content="An AI-powered coastal monitoring and decision support platform developed with the Coast Conservation &amp; Coastal Resource Management Department of Sri Lanka. Continuously monitoring, predicting, and analyzing coastal changes with actionable insights.">
+  <link rel="preload" as="image" href="images/hero-bg.webp" type="image/webp">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <style>
+    /* ===== PAGE SECTION DIVIDERS ===== */
+    .page-section-divider {
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-teal);
+      opacity: 0.18;
+    }
+
+    /* ===== FEATURE CARDS (Home) ===== */
+    .feature-highlight {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    @media (max-width: 768px) { .feature-highlight { grid-template-columns: 1fr; } }
+    .feature-card {
+      position: relative;
+      padding: 2rem;
+      border-radius: 20px;
+      background: var(--surface-white);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      transition: var(--ease-smooth);
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-teal);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); }
+    .feature-card .fc-icon {
+      width: 52px; height: 52px;
+      background: var(--teal-50);
+      border: 1px solid var(--border-teal);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .feature-card h3 {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 0.6rem;
+    }
+    .feature-card p { font-size: 0.92rem; color: var(--text-body); line-height: 1.6; }
+
+    .discovery-card { max-width: 900px; margin: 0 auto; }
+    .discovery-card h3 { color: var(--teal); margin-bottom: 1rem; font-size: 1.3rem; }
+    .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .stat-item { padding: 1rem; background: var(--teal-50); border: 1px solid var(--border-teal); border-radius: 12px; }
+    .stat-item .stat-name { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+    .stat-item .stat-val { font-size: 1.2rem; font-weight: 700; color: var(--teal); }
+    .stat-item .stat-p { font-size: 0.82rem; color: var(--text-muted); }
+    @media (max-width: 768px) { .stat-grid { grid-template-columns: 1fr; } }
+
+    .goal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .goal-card {
+      padding: 1.5rem;
+      border-radius: 18px;
+      background: var(--surface-white);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+    }
+    .goal-card h3 {
+      font-size: 1rem;
+      color: var(--text-heading);
+      margin-bottom: 0.55rem;
+    }
+    .goal-card p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-body);
+    }
+    .goal-card .goal-icon {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      background: var(--teal-50);
+      border: 1px solid var(--border-teal);
+      font-size: 1.35rem;
+    }
+    .email-template {
+      margin-top: 1.5rem;
+      padding: 1rem 1.1rem;
+      border-radius: 14px;
+      background: rgba(13, 148, 136, 0.06);
+      border: 1px solid rgba(13, 148, 136, 0.14);
+    }
+    .email-template h4 {
+      font-size: 0.95rem;
+      color: var(--text-heading);
+      margin-bottom: 0.55rem;
+    }
+    .email-template p {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      margin-bottom: 0.4rem;
+    }
+    .email-template code {
+      display: block;
+      white-space: pre-line;
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    @media (max-width: 900px) { .goal-grid { grid-template-columns: 1fr; } }
+
+    /* ===== DOMAIN PAGE ===== */
+    .component-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 1rem;
+      background: var(--teal-50);
+      border: 1px solid var(--border-teal);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .result-highlight {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .result-highlight .rh-item {
+      text-align: center;
+      padding: 1.25rem 0.75rem;
+      background: var(--teal-50);
+      border: 1px solid var(--border-teal);
+      border-radius: var(--radius-md);
+    }
+    .rh-item .rh-val { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: var(--teal); line-height: 1.1; }
+    .rh-item .rh-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+    @media (max-width: 768px) { .result-highlight { grid-template-columns: 1fr; } }
+
+    /* ===== CONTACT MAP PLACEHOLDER ===== */
+    .map-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(13,148,136,0.06), rgba(12,106,154,0.06));
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ===== STICKY NAV HIGHLIGHT ===== */
+    .nav-links a.active-section { color: var(--teal); background: var(--teal-50); }
+    .nav-links a.active-section::after { width: 50%; }
+
+    /* ===== SECTION ANCHOR LABELS ===== */
+    .page-anchor-label {
+      display: block;
+      text-align: center;
+      padding: 2.5rem 0 0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       NAVIGATION
+       ================================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <!-- Left: Logo + Dept Name -->
+      <a href="#home" class="nav-brand">
+        <div class="brand-icon">&#x1F30A;</div>
+        <div class="brand-dept">
+          <span>Coast Conservation &amp; Coastal</span>
+          <span>Resource Management Department</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Center: Nav Links with icons -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-section="home"><i class='bx bx-home-alt-2'></i>Home</a></li>
+        <li><a href="#domain" data-section="domain"><i class='bx bx-book-open'></i>Domain</a></li>
+        <li><a href="#milestones" data-section="milestones"><i class='bx bx-flag'></i>Milestones</a></li>
+        <li><a href="#documents" data-section="documents"><i class='bx bx-file'></i>Documents</a></li>
+        <li><a href="#slides" data-section="slides"><i class='bx bx-slideshow'></i>Slides</a></li>
+        <li><a href="#about" data-section="about"><i class='bx bx-group'></i>About Us</a></li>
+        <li><a href="#contact" data-section="contact"><i class='bx bx-envelope'></i>Contact Us</a></li>
+      </ul>
+
+      <!-- Right: Brand name -->
+      <a href="#home" class="nav-coastal-brand">Coastal AI</a>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       HOME PAGE
+       ================================================================ -->
+  <section id="home">
+
+    <!-- HERO -->
+    <section class="hero" id="hero-top">
+      <div class="floating-particles">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          SLASSCOM National Ingenuity Awards 2026
+        </div>
+        <h1>An Intelligent System for Coastal Erosion Forecasting and Resilient Infrastructure Planning</h1>
+        <p class="hero-subtitle">
+          An AI-powered coastal monitoring and decision support platform &mdash; continuously monitoring, predicting, and analyzing coastal changes in real time while providing actionable insights for stakeholders
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number">1,300</span>
+            <span class="stat-label">km Sri Lanka Coastline</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">85&ndash;95%</span>
+            <span class="stat-label">Analysis Time Reduced</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">4</span>
+            <span class="stat-label">System Components</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">Real&#8209;time</span>
+            <span class="stat-label">Coastal Monitoring</span>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#domain" class="btn btn-primary">Explore Domain &#8594;</a>
+          <a href="#documents" class="btn btn-secondary">&#128196; View Documents</a>
+        </div>
+      </div>
+      <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1440,60 1440,60 L1440,120 L0,120 Z" fill="rgba(248,250,251,0.4)"/>
+          <path d="M0,80 C240,40 480,100 720,60 C960,20 1200,80 1440,80 L1440,120 L0,120 Z" fill="#eef0f7"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- OVERVIEW DASHBOARD CARDS -->
+    <section class="overview-section">
+      <div class="container">
+        <div class="overview-grid">
+
+          <!-- System Components -->
+          <a href="#domain" class="overview-card">
+            <div class="ov-header">
+              <div class="ov-icon">&#127758;</div>
+              <h3>System Components</h3>
+            </div>
+            <div class="ov-preview">
+              <div class="ovc-list">
+                <div class="ovc-item">
+                  <div class="ovc-num">1</div>
+                  <div class="ovc-text"><strong>Morphological Threshold</strong>Shoreline geometry &amp; historical change analysis for vulnerability detection</div>
+                </div>
+                <div class="ovc-item">
+                  <div class="ovc-num">2</div>
+                  <div class="ovc-text"><strong>Meteorological Threshold</strong>Wave energy, wind &amp; current thresholds for ocean force detection</div>
+                </div>
+                <div class="ovc-item">
+                  <div class="ovc-num">3</div>
+                  <div class="ovc-text"><strong>Short-Term Forecasting</strong>Daily, weekly &amp; monthly risk zone mapping with automated alerts</div>
+                </div>
+                <div class="ovc-item">
+                  <div class="ovc-num">4</div>
+                  <div class="ovc-text"><strong>Long-Term Forecasting</strong>Multi-year projections for strategic infrastructure &amp; coastal planning</div>
+                </div>
+              </div>
+              <div class="ovc-stat-row">
+                <div class="ovc-stat"><span class="csv">1,300km</span><span class="csl">Coastline</span></div>
+                <div class="ovc-stat"><span class="csv">85&ndash;95%</span><span class="csl">Time Saved</span></div>
+                <div class="ovc-stat"><span class="csv">Real-time</span><span class="csl">Monitoring</span></div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Milestones Timeline -->
+          <a href="#milestones" class="overview-card">
+            <div class="ov-header">
+              <div class="ov-icon">&#128197;</div>
+              <h3>Milestones Timeline</h3>
+            </div>
+            <div class="ov-preview">
+              <div class="ovm-list">
+                <div class="ovm-item">
+                  <div class="ovm-dot"></div>
+                  <div class="ovm-name">Project Proposal</div>
+                  <div class="ovm-date">Feb 2024</div>
+                  <div class="ovm-pct">12%</div>
+                </div>
+                <div class="ovm-item">
+                  <div class="ovm-dot"></div>
+                  <div class="ovm-name">Progress Presentation 1</div>
+                  <div class="ovm-date">Jun 2024</div>
+                  <div class="ovm-pct">15%</div>
+                </div>
+                <div class="ovm-item">
+                  <div class="ovm-dot"></div>
+                  <div class="ovm-name">Progress Presentation 2</div>
+                  <div class="ovm-date">Oct 2024</div>
+                  <div class="ovm-pct">18%</div>
+                </div>
+                <div class="ovm-item">
+                  <div class="ovm-dot" style="background:linear-gradient(135deg,#f59e0b,#ef4444);"></div>
+                  <div class="ovm-name">Final Assessment</div>
+                  <div class="ovm-date">Jan 2025</div>
+                  <div class="ovm-pct" style="color:#111827;border-color:rgba(17,24,39,0.16);background:rgba(245,158,11,0.26);">40%</div>
+                </div>
+                <div class="ovm-item">
+                  <div class="ovm-dot" style="background:linear-gradient(135deg,#10b981,#3b82f6);"></div>
+                  <div class="ovm-name">Viva Voce</div>
+                  <div class="ovm-date">Feb 2025</div>
+                  <div class="ovm-pct" style="color:#111827;border-color:rgba(17,24,39,0.16);background:rgba(16,185,129,0.28);">15%</div>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Documents Library -->
+          <a href="#documents" class="overview-card">
+            <div class="ov-header">
+              <div class="ov-icon">&#128196;</div>
+              <h3>Documents Library</h3>
+            </div>
+            <div class="ov-preview">
+              <div class="ov-docs">
+                <div class="ovd-item"><span class="ovd-icon">&#128193;</span>Project Charter &amp; Proposal</div>
+                <div class="ovd-item"><span class="ovd-icon">&#128193;</span>Status Document I &mdash; Data Fusion</div>
+                <div class="ovd-item"><span class="ovd-icon">&#128193;</span>Status Document II &mdash; ML Models</div>
+                <div class="ovd-item"><span class="ovd-icon">&#128196;</span>Final Main Report</div>
+                <div class="ovd-item"><span class="ovd-icon">&#128196;</span>Component Reports (1&ndash;4)</div>
+                <div class="ovd-item"><span class="ovd-icon">&#128220;</span>Research Paper (IEEE)</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Presentations Gallery -->
+          <a href="#slides" class="overview-card">
+            <div class="ov-header">
+              <div class="ov-icon">&#128250;</div>
+              <h3>Presentations Gallery</h3>
+            </div>
+            <div class="ov-preview">
+              <div class="ov-slides">
+                <div class="ovs-row">
+                  <div class="ovs-thumb">
+                    <div class="ovs-inner" style="background:linear-gradient(135deg,#1e1b4b,#4338ca)">Proposal</div>
+                    <span class="ovs-label">Proposal Presentation</span>
+                    <span class="ovs-date">Feb 2024</span>
+                  </div>
+                  <div class="ovs-thumb">
+                    <div class="ovs-inner" style="background:linear-gradient(135deg,#312e81,#6366f1)">Progress 1</div>
+                    <span class="ovs-label">Progress Presentation 1</span>
+                    <span class="ovs-date">Jun 2024</span>
+                  </div>
+                </div>
+                <div class="ovs-row">
+                  <div class="ovs-thumb">
+                    <div class="ovs-inner" style="background:linear-gradient(135deg,#1e40af,#3b82f6)">Progress 2</div>
+                    <span class="ovs-label">Progress Presentation 2</span>
+                    <span class="ovs-date">Oct 2024</span>
+                  </div>
+                  <div class="ovs-thumb">
+                    <div class="ovs-inner" style="background:linear-gradient(135deg,#5b21b6,#7c3aed)">&#127942; Final</div>
+                    <span class="ovs-label">Final Presentation</span>
+                    <span class="ovs-date">Jan 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Team Member Profiles -->
+          <a href="#about" class="overview-card">
+            <div class="ov-header">
+              <div class="ov-icon">&#128101;</div>
+              <h3>Team Member Profiles</h3>
+            </div>
+            <div class="ov-preview">
+              <div class="ov-team">
+                <div class="ovt-member">
+                  <div class="ovt-avatar">&#128104;&#8205;&#128187;</div>
+                  <small>Team Leader</small>
+                  <small style="color:var(--primary);font-size:0.58rem;">Component 3</small>
+                </div>
+                <div class="ovt-member">
+                  <div class="ovt-avatar ovt-av2">&#128105;&#8205;&#128187;</div>
+                  <small>Data Engineer</small>
+                  <small style="color:var(--primary);font-size:0.58rem;">Component 1</small>
+                </div>
+                <div class="ovt-member">
+                  <div class="ovt-avatar ovt-av3">&#128104;&#8205;&#128187;</div>
+                  <small>Statistician</small>
+                  <small style="color:var(--primary);font-size:0.58rem;">Component 2</small>
+                </div>
+                <div class="ovt-member">
+                  <div class="ovt-avatar ovt-av4">&#128105;&#8205;&#128187;</div>
+                  <small>GIS / Viz</small>
+                  <small style="color:var(--primary);font-size:0.58rem;">Component 4</small>
+                </div>
+              </div>
+              <div style="margin-top:0.75rem;padding:0.5rem 0.65rem;background:white;border:1px solid rgba(99,102,241,0.12);border-radius:8px;text-align:center;">
+                <span style="font-size:0.62rem;color:var(--text-muted);">Supervised by</span>
+                <span style="font-size:0.68rem;font-weight:700;color:var(--text-heading);display:block;">Dr. Supervisor &amp; Co-Supervisor</span>
+                <span style="font-size:0.60rem;color:var(--text-muted);">Dept. of Computer &amp; Environmental Science</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Contact Form -->
+          <a href="#contact" class="overview-card">
+            <div class="ov-header">
+              <div class="ov-icon">&#9993;</div>
+              <h3>Contact Form</h3>
+            </div>
+            <div class="ov-preview">
+              <div class="ov-form">
+                <div class="ovf-input">&#128100; Your Name</div>
+                <div class="ovf-input">&#9993; Your Email Address</div>
+                <div class="ovf-textarea" style="padding-top:0.38rem;">&#128172; Your message about CoastalAI&hellip;</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.15rem;">
+                  <span style="font-size:0.62rem;color:var(--text-muted);">&#128205; University of Sri Lanka</span>
+                  <div class="ovf-btn">Send &#8594;</div>
+                </div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK NAVIGATION -->
+    <section class="section" style="padding-top: 2rem;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Quick Navigation</span>
+          <h2 class="section-title">Explore The Site</h2>
+          <p class="section-desc">Use the main pages for overview content or jump directly into the four technical components inside the Domain area</p>
+        </div>
+        <div class="quick-nav">
+          <a href="#domain">&#127758; Domain</a>
+          <a href="#milestones">&#127919; Milestones</a>
+          <a href="#documents">&#128196; Documents</a>
+          <a href="#slides">&#128202; Slides</a>
+          <a href="#about">&#128101; About Us</a>
+          <a href="#contact">&#9993; Contact Us</a>
+          <a href="#morphological-threshold">&#127757; Morphological</a>
+          <a href="#meteorological-threshold">&#127754; Meteorological</a>
+          <a href="#short-term-forecasting">&#128200; Short-Term</a>
+          <a href="#long-term-forecasting">&#128201; Long-Term</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABSTRACT -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Project Overview</span>
+          <h2 class="section-title">Research Abstract</h2>
+          <div class="glow-line"></div>
+        </div>
+        <div class="abstract-box">
+          <strong>An Intelligent System for Coastal Erosion Forecasting and Resilient Infrastructure Planning</strong> is an AI-powered coastal monitoring and decision support platform developed with the <strong>Coast Conservation and Coastal Resource Management Department of Sri Lanka</strong>. Coastal erosion in Sri Lanka is influenced by ocean currents, wind patterns, wave dynamics, sediment transport, and monsoonal cycles. Traditional approaches rely on periodic manual surveys and fragmented analyses, resulting in delayed decision-making. This system transforms reactive approaches into <strong>proactive, intelligent monitoring</strong> using multi-source satellite data (<strong>Copernicus Marine Services, ERA5</strong>), shoreline morphology, and environmental variables. The modular four-component architecture covers <strong>morphological and meteorological threshold detection</strong>, alongside <strong>short-term and long-term forecasting</strong> with interactive risk zone mapping &mdash; reducing analysis time by <strong>85&ndash;95%</strong> while providing actionable insights for coastal stakeholders.
+        </div>
+        <div class="coastal-visual" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Site Goals</span>
+          <h2 class="section-title">What This Website Is Designed To Do</h2>
+          <p class="section-desc">The site is organized to give visitors a clear path from project introduction to technical evidence, assessments, documents, presentations, and direct contact options.</p>
+        </div>
+        <div class="goal-grid">
+          <div class="goal-card">
+            <div class="goal-icon">&#127919;</div>
+            <h3>Present the Project Clearly</h3>
+            <p>Introduce CoastalAI in a concise form so visitors can quickly understand the project purpose, the coastal problem being addressed, and the value delivered to Sri Lankan stakeholders.</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-icon">&#128214;</div>
+            <h3>Organize Technical Content</h3>
+            <p>Group literature findings, research gap, problem statement, objectives, methodology, and technologies into a consistent Domain section with easy in-page navigation.</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-icon">&#128279;</div>
+            <h3>Give Fast Access To Assets</h3>
+            <p>Help visitors move directly to milestones, documents, slides, team details, and contact channels without hunting through the page or relying on heavy visuals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 RESEARCH COMPONENTS -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Research Components</span>
+          <h2 class="section-title">The Four System Components</h2>
+          <p class="section-desc">The platform is built on four interconnected components, each addressing a critical dimension of coastal erosion monitoring, prediction, and planning</p>
+        </div>
+        <div class="feature-highlight">
+          <div class="feature-card">
+            <div class="fc-icon">&#127757;</div>
+            <h3>Component 1: Shoreline Morphology-Based Threshold Detection</h3>
+            <p>Analyzes shoreline geometry and historical changes using satellite-derived DSAS measurements to detect threshold values indicating when beach sediment becomes weak and vulnerable to erosion. Identifies the critical conditions under which beach resistance is lost.</p>
+            <div style="margin-top: 1rem;">
+              <span class="tech-tag">DSAS</span>
+              <span class="tech-tag">Satellite Imagery</span>
+              <span class="tech-tag">GIS</span>
+              <span class="tech-tag">Shoelace Formula</span>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon">&#127754;</div>
+            <h3>Component 2: Meteorological-Based Threshold Detection</h3>
+            <p>Examines wave energy, wind speed, and ocean currents to determine when forces become strong enough to trigger erosion. A dual-threshold approach captures both sides of erosion &mdash; weakening shoreline resistance and strengthening ocean forces.</p>
+            <div style="margin-top: 1rem;">
+              <span class="tech-tag">ERA5</span>
+              <span class="tech-tag">Copernicus</span>
+              <span class="tech-tag">XGBoost</span>
+              <span class="tech-tag">Random Forest</span>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon">&#128200;</div>
+            <h3>Component 3: Short-Term Forecasting &amp; Risk Zone Mapping</h3>
+            <p>Provides near real-time predictions of shoreline changes on daily, weekly, and monthly scales. Integrates environmental forecasts with shoreline data to identify high-risk zones before damage occurs, enabling timely coastal management actions.</p>
+            <div style="margin-top: 1rem;">
+              <span class="tech-tag">Risk Mapping</span>
+              <span class="tech-tag">GeoJSON</span>
+              <span class="tech-tag">Real-time</span>
+              <span class="tech-tag">Automated Alerts</span>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon">&#128201;</div>
+            <h3>Component 4: Long-Term Forecasting &amp; Risk Zone Mapping</h3>
+            <p>Generates multi-year projections using ensemble regression and SARIMA models. Supports strategic planning for infrastructure, urban expansion, and coastal protection by predicting future land loss or gain with high accuracy.</p>
+            <div style="margin-top: 1rem;">
+              <span class="tech-tag">SARIMA</span>
+              <span class="tech-tag">Ensemble Regression</span>
+              <span class="tech-tag">KML</span>
+              <span class="tech-tag">Multi-year Projections</span>
+            </div>
+          </div>
+        </div>
+        <div class="counter-grid">
+          <div class="card counter-card">
+            <div class="counter-value">1,300</div>
+            <div class="counter-label">km Coastline</div>
+          </div>
+          <div class="card counter-card">
+            <div class="counter-value">85&ndash;95%</div>
+            <div class="counter-label">Analysis Time Saved</div>
+          </div>
+          <div class="card counter-card">
+            <div class="counter-value">4</div>
+            <div class="counter-label">System Components</div>
+          </div>
+          <div class="card counter-card">
+            <div class="counter-value">5+</div>
+            <div class="counter-label">Stakeholder Groups</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEM INNOVATION -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Why It Matters</span>
+          <h2 class="section-title">System Innovation &amp; Impact</h2>
+          <p class="section-desc">Key innovations that set this system apart from conventional coastal monitoring approaches</p>
+        </div>
+        <div class="card discovery-card">
+          <h3>&#128161; Key Innovations</h3>
+          <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            This system addresses the critical gap in Sri Lanka&rsquo;s coastal management: the absence of an integrated, real-time, AI-driven platform that can <strong style="color: var(--coral);">proactively identify, predict, and communicate</strong> coastal erosion risk before damage occurs. Coastal erosion is a &ldquo;silent disaster&rdquo; threatening land, infrastructure, ecosystems, and the livelihoods of millions.
+          </p>
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-name">Dual-Perspective Detection</div>
+              <div class="stat-val">&#127757; + &#127754;</div>
+              <div class="stat-p">Shoreline weakening + Ocean force strengthening</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-name">Multi-Horizon Forecasting</div>
+              <div class="stat-val">Daily &rarr; Multi-year</div>
+              <div class="stat-p">Short-term alerts &amp; long-term planning in one platform</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-name">Automation Impact</div>
+              <div class="stat-val">85&ndash;95%</div>
+              <div class="stat-p">Reduction in manual analysis time</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-name">Explainable AI</div>
+              <div class="stat-val">Interpretable</div>
+              <div class="stat-p">Transparent thresholds for non-technical stakeholders</div>
+            </div>
+          </div>
+          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+            <h3 style="font-size: 1.1rem; color: var(--text-heading); margin-bottom: 1rem;">&#127979; Stakeholders &amp; Impact</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+              <div style="padding: 0.75rem; background: var(--teal-50); border: 1px solid var(--border-teal); border-radius: 10px; font-size: 0.88rem;">&#127963; <strong>Coast Conservation Dept</strong><br>Automated decision-support</div>
+              <div style="padding: 0.75rem; background: var(--teal-50); border: 1px solid var(--border-teal); border-radius: 10px; font-size: 0.88rem;">&#127944; <strong>Tourism &amp; Hospitality</strong><br>Beach &amp; resort protection</div>
+              <div style="padding: 0.75rem; background: var(--teal-50); border: 1px solid var(--border-teal); border-radius: 10px; font-size: 0.88rem;">&#127891; <strong>Fisheries Communities</strong><br>Livelihood stability</div>
+              <div style="padding: 0.75rem; background: var(--teal-50); border: 1px solid var(--border-teal); border-radius: 10px; font-size: 0.88rem;">&#128680; <strong>Disaster Management</strong><br>Early warning systems</div>
+              <div style="padding: 0.75rem; background: var(--teal-50); border: 1px solid var(--border-teal); border-radius: 10px; font-size: 0.88rem;">&#127968; <strong>Urban Planners</strong><br>Infrastructure foresight</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO DEMO -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">See It In Action</span>
+          <h2 class="section-title">System Demo Video</h2>
+          <p class="section-desc">A full walkthrough of the CoastalAI system and its four components</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-card-hover);">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; background: #0f1035;">
+            <iframe
+              src="https://drive.google.com/file/d/1Yq-ggrwutBS0LMsXV_qB17KOEIExHYwq/preview"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+              allow="autoplay"
+              title="CoastalAI System Demo">
+            </iframe>
+          </div>
+        </div>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem;">
+          <a href="https://drive.google.com/file/d/1Yq-ggrwutBS0LMsXV_qB17KOEIExHYwq/view?usp=sharing" target="_blank" rel="noopener" style="color: var(--teal);">&#9654; Open in Google Drive</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGIES -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Tech Stack</span>
+          <h2 class="section-title">Technologies &amp; Tools</h2>
+        </div>
+        <div style="text-align: center;">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Scikit-learn</span>
+          <span class="tech-tag">XGBoost</span>
+          <span class="tech-tag">Random Forest</span>
+          <span class="tech-tag">Gradient Boosting</span>
+          <span class="tech-tag">SARIMA</span>
+          <span class="tech-tag">Statsmodels</span>
+          <span class="tech-tag">NumPy</span>
+          <span class="tech-tag">Pandas</span>
+          <span class="tech-tag">Matplotlib</span>
+          <span class="tech-tag">Copernicus Marine Services</span>
+          <span class="tech-tag">ERA5 Reanalysis</span>
+          <span class="tech-tag">DSAS</span>
+          <span class="tech-tag">Google Earth Pro</span>
+          <span class="tech-tag">GIS</span>
+          <span class="tech-tag">KML / GeoJSON</span>
+          <span class="tech-tag">ROC / Youden Optimization</span>
+          <span class="tech-tag">Bayesian Logistic Regression</span>
+          <span class="tech-tag">Profile Likelihood</span>
+          <span class="tech-tag">Mutual Information</span>
+          <span class="tech-tag">Mann&ndash;Whitney U Test</span>
+          <span class="tech-tag">Cliff&rsquo;s Delta</span>
+          <span class="tech-tag">Bootstrap Resampling</span>
+          <span class="tech-tag">Monte Carlo Simulation</span>
+          <span class="tech-tag">Shoelace Formula</span>
+          <span class="tech-tag">Web Dashboard</span>
+        </div>
+      </div>
+    </section>
+
+  </section><!-- /home -->
+
+  <div class="page-section-divider"></div>
+
+  <!-- ================================================================
+       DOMAIN PAGE
+       ================================================================ -->
+  <section id="domain">
+    <span class="page-anchor-label">&#127758; Domain &amp; Research Background</span>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Research Domain</span>
+        <h1>Domain &amp; Research Background</h1>
+      </div>
+      <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#eef0f7"/></svg></div>
+    </div>
+
+    <!-- Quick Nav -->
+    <div style="padding: 1rem 0;">
+      <div class="container">
+        <div class="quick-nav">
+          <a href="#domain-literature">&#128214; Background</a>
+          <a href="#domain-gap">&#128269; Research Gap</a>
+          <a href="#domain-problem">&#9888;&#65039; Problem</a>
+          <a href="#domain-objectives">&#127919; Objectives</a>
+          <a href="#morphological-threshold">&#127757; Morphological</a>
+          <a href="#meteorological-threshold">&#127754; Meteorological</a>
+          <a href="#short-term-forecasting">&#128200; Short-Term</a>
+          <a href="#long-term-forecasting">&#128201; Long-Term</a>
+          <a href="#domain-technologies">&#128187; Technologies</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LITERATURE SURVEY -->
+    <section class="content-section" id="domain-literature">
+      <div class="container">
+        <div class="content-block">
+          <h2>&#128214; Research Background</h2>
+          <h3>Sri Lanka&rsquo;s Coastal Erosion Challenge</h3>
+          <p>Sri Lanka has a coastline spanning approximately <strong class="highlight">1,300 km</strong>, encompassing diverse beach types, coral reefs, mangroves, and estuaries. Coastal erosion is driven by a complex interplay of ocean currents, wind patterns, wave dynamics, sediment transport, and monsoonal cycles unique to the region. The <strong>Southwest Monsoon</strong> (May&ndash;September) and <strong>Northeast Monsoon</strong> (November&ndash;February) create distinctly different wave energy and current regimes that traditional monitoring systems fail to capture adequately.</p>
+          <p>Coastal erosion in Sri Lanka is considered a <strong>&ldquo;silent disaster&rdquo;</strong> &mdash; it causes progressive loss of land, damage to infrastructure, degradation of ecosystems, and displacement of coastal communities, yet it proceeds without the immediate visibility of acute disasters. The <strong>Coast Conservation and Coastal Resource Management Department (CCCRMD)</strong> of Sri Lanka is the primary government body responsible for managing this challenge.</p>
+          <h3>Limitations of Traditional Approaches</h3>
+          <p>Traditional coastal monitoring approaches in Sri Lanka rely on periodic field surveys, manual shoreline mapping, and fragmented data analysis. These methods are:</p>
+          <ul>
+            <li><strong>Reactive rather than proactive</strong> &mdash; damage is assessed after it occurs rather than predicted and prevented.</li>
+            <li><strong>Time-consuming and resource-intensive</strong> &mdash; manual surveys require significant field teams and cannot provide continuous monitoring.</li>
+            <li><strong>Fragmented and disconnected</strong> &mdash; wave data, wind data, shoreline change data, and sediment data are rarely analyzed together in an integrated framework.</li>
+            <li><strong>Unable to capture complexity</strong> &mdash; the complex interactions between environmental drivers under Sri Lanka&rsquo;s monsoonal patterns cannot be modeled with simple statistical methods.</li>
+          </ul>
+          <h3>Machine Learning &amp; AI in Coastal Science</h3>
+          <p>Recent advances in machine learning have opened new possibilities for coastal erosion prediction. Ensemble methods such as <strong>Random Forest</strong>, <strong>XGBoost</strong>, and <strong>Gradient Boosting</strong> have demonstrated strong performance in environmental classification tasks. <strong>SARIMA</strong> time-series models have been applied to wave height and sea-level prediction. The <strong>Digital Shoreline Analysis System (DSAS)</strong> from USGS enables satellite-derived shoreline change analysis. Multi-source remote sensing data from <strong>Copernicus Marine Services</strong> and <strong>ERA5 reanalysis</strong> provide high-resolution wave, wind, and current variables. The convergence of these technologies creates an opportunity to build an integrated, intelligent coastal monitoring system.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH GAP -->
+    <section class="content-section" id="domain-gap" style="padding-top: 0;">
+      <div class="container">
+        <div class="content-block">
+          <h2>&#128269; Research Gap</h2>
+          <p>Despite advances in machine learning for coastal erosion prediction, critical gaps persist in Sri Lanka&rsquo;s coastal management capability:</p>
+          <div class="grid-2" style="margin-top: 1.5rem;">
+            <div class="card" style="text-align: left;">
+              <div class="card-icon">1</div>
+              <h3>No Integrated Real-Time System</h3>
+              <p>The Coast Conservation Department lacks a unified, real-time platform that integrates shoreline data, wave data, wind data, and current data into actionable erosion risk assessments.</p>
+            </div>
+            <div class="card" style="text-align: left;">
+              <div class="card-icon">2</div>
+              <h3>Reactive Rather Than Predictive</h3>
+              <p>Current monitoring relies on periodic field surveys and manual shoreline mapping &mdash; a reactive approach that cannot warn stakeholders before erosion damage occurs.</p>
+            </div>
+            <div class="card" style="text-align: left;">
+              <div class="card-icon">3</div>
+              <h3>Monsoonal Complexity Unaddressed</h3>
+              <p>Sri Lanka&rsquo;s unique bi-monsoonal patterns create complex, seasonally-varying erosion dynamics that simple statistical models cannot capture effectively.</p>
+            </div>
+            <div class="card" style="text-align: left;">
+              <div class="card-icon">4</div>
+              <h3>No Multi-Scale Forecasting</h3>
+              <p>There is no existing system that provides both short-term (daily/weekly/monthly) operational alerts AND long-term (multi-year) strategic planning forecasts for coastal managers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH PROBLEM -->
+    <section class="content-section" id="domain-problem" style="padding-top: 0;">
+      <div class="container">
+        <div class="content-block">
+          <h2>&#9888;&#65039; Research Problem</h2>
+          <div class="card" style="border-left: 4px solid var(--coral); max-width: 900px;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-body);">
+              Coastal erosion in Sri Lanka is a <strong class="highlight">&ldquo;silent disaster&rdquo;</strong> that threatens land, infrastructure, ecosystems, and the livelihoods of millions of people along the 1,300 km coastline. The Coast Conservation and Coastal Resource Management Department lacks an integrated, real-time system capable of identifying <em>when</em>, <em>how</em>, and <em>under what conditions</em> erosion occurs.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-top: 1rem;">
+              Current monitoring relies on periodic field surveys and manual shoreline mapping &mdash; methods that are <strong>reactive</strong>, time-consuming, and fundamentally unable to capture the complex interactions between environmental drivers under Sri Lanka&rsquo;s unique monsoonal patterns. The absence of automated analysis tools means that critical decisions about coastal infrastructure, development, and disaster preparedness are made without timely, data-driven insights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH OBJECTIVES -->
+    <section class="content-section" id="domain-objectives" style="padding-top: 0;">
+      <div class="container">
+        <div class="content-block">
+          <h2>&#127919; Research Objectives</h2>
+          <p>This project is structured into <strong class="highlight">four system components</strong>, each targeting a specific dimension of coastal erosion monitoring and prediction. Together they form an end-to-end intelligent platform for the Coast Conservation and Coastal Resource Management Department.</p>
+          <div style="max-width: 800px; margin-top: 1.5rem;">
+            <div class="card" style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.25rem;">
+              <div style="min-width: 48px; height: 48px; background: linear-gradient(135deg, var(--teal), var(--ocean-500)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.1rem;">1</div>
+              <div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--text-heading);">Shoreline Morphology-Based Threshold Detection</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem;">Develop a system that analyzes shoreline geometry and historical change data to detect threshold values indicating critical beach resistance loss conditions, enabling early identification of morphologically vulnerable coastal segments.</p>
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.25rem;">
+              <div style="min-width: 48px; height: 48px; background: linear-gradient(135deg, var(--teal), var(--ocean-500)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.1rem;">2</div>
+              <div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--text-heading);">Meteorological-Based Threshold Detection and Prediction</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem;">Build a dual-threshold detection system examining wave energy, wind patterns, and ocean currents to determine when ocean forces cross critical levels, capturing both sides of erosion: weakening shoreline resistance and strengthening ocean forces.</p>
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.25rem;">
+              <div style="min-width: 48px; height: 48px; background: linear-gradient(135deg, var(--teal), var(--ocean-500)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.1rem;">3</div>
+              <div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--text-heading);">Short-Term Coastal Erosion Forecasting &amp; Risk Zone Mapping</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem;">Create near real-time prediction capabilities for shoreline changes on daily, weekly, and monthly scales, integrating environmental forecasts with shoreline data to generate actionable risk zone maps before damage occurs.</p>
+              </div>
+            </div>
+            <div class="card" style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.25rem;">
+              <div style="min-width: 48px; height: 48px; background: linear-gradient(135deg, var(--teal), var(--ocean-500)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.1rem;">4</div>
+              <div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--text-heading);">Long-Term Coastal Erosion Forecasting &amp; Risk Zone Mapping</h3>
+                <p style="color: var(--text-body); font-size: 0.95rem;">Develop multi-year projection capabilities using ensemble regression and SARIMA models, producing strategic-scale risk maps that support infrastructure planning, coastal protection investment, and urban development decisions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENT 1: MORPHOLOGICAL THRESHOLD -->
+    <section class="content-section section-alt" id="morphological-threshold">
+      <div class="container">
+        <div class="content-block">
+          <div class="component-badge">&#127757; Component 1</div>
+          <h2>Shoreline Morphology-Based Threshold Detection</h2>
+          <p>This component identifies the critical conditions under which coastal sediment becomes structurally weak and vulnerable to erosion. By analyzing shoreline geometry and historical change patterns, it detects threshold values that indicate the transition from stable to erosion-prone beach states.</p>
+          <h3>Methodology</h3>
+          <ul>
+            <li><strong>Satellite-derived shoreline extraction:</strong> Multi-decade shoreline position data from satellite imagery, processed using the Digital Shoreline Analysis System (DSAS).</li>
+            <li><strong>Shoreline change metrics:</strong> Net Shoreline Movement (NSM), End-Point Rate (EPR), Linear Regression Rate (LRR), and Weighted Linear Regression (WLR) across transects spanning the study area.</li>
+            <li><strong>Shoelace formula:</strong> Computes coastal polygon areas to quantify volumetric changes in beach sediment over time.</li>
+            <li><strong>Google Earth Pro &amp; GIS analysis:</strong> Spatial visualization and cross-validation of shoreline positions with field observations.</li>
+            <li><strong>Threshold detection:</strong> Statistical methods applied to shoreline change rates to identify critical boundary values separating eroding from stable beach segments.</li>
+          </ul>
+          <h3>Data Sources</h3>
+          <div class="card" style="overflow-x: auto; margin-top: 1rem;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Dataset</th><th>Source</th><th>Coverage</th><th>Key Variables</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Shoreline Positions</strong></td><td>Satellite Imagery</td><td>Multi-decade</td><td>Shoreline coordinates, geometry</td></tr>
+                <tr><td><strong>DSAS Transects</strong></td><td>USGS / Satellite</td><td>Study coastline</td><td>NSM, EPR, LRR, WLR (20 metrics)</td></tr>
+                <tr><td><strong>Coastal Polygons</strong></td><td>GIS Analysis</td><td>Beach segments</td><td>Area, volume proxy, sediment change</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Key Outputs</h3>
+          <ul>
+            <li>Morphological vulnerability thresholds for each coastal segment.</li>
+            <li>Classification of beach segments as stable, transitional, or critically eroding.</li>
+            <li>Spatial maps of morphological risk zones exported to GIS-compatible formats.</li>
+          </ul>
+          <div class="result-highlight">
+            <div class="rh-item"><div class="rh-val">DSAS</div><div class="rh-label">Shoreline Analysis</div></div>
+            <div class="rh-item"><div class="rh-val">Shoelace</div><div class="rh-label">Area Computation</div></div>
+            <div class="rh-item"><div class="rh-val">GIS Maps</div><div class="rh-label">Spatial Output</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- COMPONENT 2: METEOROLOGICAL THRESHOLD -->
+    <section class="content-section" id="meteorological-threshold">
+      <div class="container">
+        <div class="content-block">
+          <div class="component-badge">&#127754; Component 2</div>
+          <h2>Meteorological-Based Threshold Detection and Prediction</h2>
+          <p>This component examines the oceanographic and atmospheric forces acting on the coastline to determine critical thresholds at which erosion is triggered. A unique dual-threshold approach captures both sides of the erosion equation: the weakening of shoreline resistance and the strengthening of ocean forces.</p>
+          <h3>Dual-Threshold Approach</h3>
+          <div class="grid-2" style="margin-top: 1rem;">
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#127757; Morphological Side</h3>
+              <p>Identifies conditions under which the shoreline structure weakens &mdash; reduced sediment supply, lowered beach berm elevation, or narrowed beach width that makes it susceptible to wave attack.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#127754; Meteorological Side</h3>
+              <p>Detects when ocean forces &mdash; wave energy, wind stress, and current magnitude &mdash; exceed critical thresholds sufficient to mobilize and transport coastal sediments offshore.</p>
+            </div>
+          </div>
+          <h3>Threshold Detection Methods</h3>
+          <div class="grid-2" style="margin-top: 1rem;">
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#9312; ROC / Youden Optimization</h3>
+              <p>Maximizes the Youden Index (J = Sensitivity + Specificity &minus; 1) to find the optimal decision boundary for erosion classification.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#9313; Bayesian Logistic Inflection</h3>
+              <p>Fits logistic regression with balanced class weights and identifies the P(erosion)&nbsp;=&nbsp;0.5 crossing point as the erosion threshold.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#9314; Profile Likelihood Change-Point</h3>
+              <p>Minimizes combined within-group variance across the binary split, providing a distribution-free threshold estimate.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#9315; Mutual Information Maximization</h3>
+              <p>Maximizes Shannon mutual information I(X;&nbsp;Y) between the binary feature partition and the erosion label for information-theoretic thresholds.</p>
+            </div>
+          </div>
+          <h3>ML Classification Models</h3>
+          <ul>
+            <li><strong>Random Forest:</strong> Ensemble of decision trees with bootstrap aggregation for robust erosion classification.</li>
+            <li><strong>XGBoost:</strong> Gradient-boosted trees with regularization, optimized for tabular environmental data.</li>
+            <li><strong>Gradient Boosting:</strong> Sequential ensemble method for improved prediction of complex non-linear erosion patterns.</li>
+          </ul>
+          <h3>Environmental Data Sources</h3>
+          <div class="card" style="overflow-x: auto; margin: 1.25rem 0;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Dataset</th><th>Source</th><th>Variables</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Wave Reanalysis</strong></td><td>Copernicus Marine Services (CMEMS)</td><td>Wave height, period, direction, Stokes drift</td></tr>
+                <tr><td><strong>Sea Surface Wind</strong></td><td>Copernicus Marine Services</td><td>Wind speed, directional components, stress</td></tr>
+                <tr><td><strong>Ocean Current</strong></td><td>Copernicus Marine Services</td><td>Surface currents, sea surface height</td></tr>
+                <tr><td><strong>Atmospheric Reanalysis</strong></td><td>ERA5 (ECMWF)</td><td>Wind fields, pressure, precipitation</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="result-highlight" style="margin-top: 1.5rem;">
+            <div class="rh-item"><div class="rh-val">4 Methods</div><div class="rh-label">Threshold Ensemble</div></div>
+            <div class="rh-item"><div class="rh-val">Dual</div><div class="rh-label">Perspective Approach</div></div>
+            <div class="rh-item"><div class="rh-val">CV &lt; 0.03</div><div class="rh-label">Bootstrap Stability</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENT 3: SHORT-TERM FORECASTING -->
+    <section class="content-section section-alt" id="short-term-forecasting">
+      <div class="container">
+        <div class="content-block">
+          <div class="component-badge">&#128200; Component 3</div>
+          <h2>Short-Term Coastal Erosion Forecasting &amp; Risk Zone Mapping</h2>
+          <p>This component provides near real-time predictions of shoreline changes on daily, weekly, and monthly scales. By integrating real-time environmental forecasts with shoreline data, it identifies high-risk areas before damage occurs &mdash; enabling timely intervention and coastal management actions.</p>
+          <h3>Forecasting Approach</h3>
+          <ul>
+            <li><strong>Environmental forecast integration:</strong> Combines real-time wave, wind, and current data with meteorological threshold model outputs to assess imminent erosion risk.</li>
+            <li><strong>Shoreline change prediction:</strong> Applies trained ML models (Random Forest, XGBoost, Gradient Boosting) to current environmental conditions to forecast near-term shoreline movement.</li>
+            <li><strong>Daily / weekly / monthly scales:</strong> Multi-scale predictions allow both immediate operational decisions and near-term planning over days and weeks.</li>
+            <li><strong>Automated alert generation:</strong> When predicted conditions exceed defined thresholds, automated alerts are sent to coastal managers for rapid response.</li>
+          </ul>
+          <h3>Risk Zone Mapping</h3>
+          <ul>
+            <li><strong>Spatial risk maps:</strong> Predicted erosion probabilities are mapped onto the coastline, color-coded by risk level (Low, Moderate, High, Critical).</li>
+            <li><strong>GeoJSON / KML outputs:</strong> Risk zone maps are exported in standard geospatial formats compatible with GIS tools and Google Earth Pro.</li>
+            <li><strong>Transect-level resolution:</strong> Risk assessments are produced at individual transect level for precise location identification.</li>
+          </ul>
+          <h3>Stakeholder Value</h3>
+          <div class="grid-2" style="margin-top: 1rem;">
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#127963; Coast Conservation Dept</h3>
+              <p>Operational alerts for field team deployment. Prioritize monitoring resources based on predicted high-risk zones.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#128680; Disaster Management Centre</h3>
+              <p>Early warning for disaster preparedness. Short-term forecasts support evacuation and protective action planning.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#127944; Tourism &amp; Hospitality</h3>
+              <p>Beach resort operators receive advance notice of elevated erosion risk for protective infrastructure action.</p>
+            </div>
+            <div class="card">
+              <h3 style="color: var(--teal); font-size: 1rem; margin-bottom: 0.5rem;">&#127891; Fisheries Communities</h3>
+              <p>Fishing communities are alerted to coastal access hazards and shoreline changes affecting landing sites.</p>
+            </div>
+          </div>
+          <div class="result-highlight">
+            <div class="rh-item"><div class="rh-val">Real-time</div><div class="rh-label">Monitoring</div></div>
+            <div class="rh-item"><div class="rh-val">3 Scales</div><div class="rh-label">Daily / Weekly / Monthly</div></div>
+            <div class="rh-item"><div class="rh-val">GeoJSON</div><div class="rh-label">Geospatial Output</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENT 4: LONG-TERM FORECASTING -->
+    <section class="content-section" id="long-term-forecasting">
+      <div class="container">
+        <div class="content-block">
+          <div class="component-badge">&#128201; Component 4</div>
+          <h2>Long-Term Coastal Erosion Forecasting &amp; Risk Zone Mapping</h2>
+          <p>This component generates multi-year projections of coastal erosion using ensemble regression and SARIMA time-series models. It supports strategic planning for infrastructure, urban expansion, and coastal protection by predicting future land loss or gain with high accuracy.</p>
+          <h3>Forecasting Methodology</h3>
+          <ul>
+            <li><strong>SARIMA time-series models:</strong> Seasonal Autoregressive Integrated Moving Average models capture annual monsoon seasonality (period=12) in shoreline change data. AIC grid search selects optimal model parameters.</li>
+            <li><strong>Ensemble regression:</strong> Multiple regression models are combined to improve long-term prediction accuracy and reduce individual model bias.</li>
+            <li><strong>Stationarity testing:</strong> ADF (Augmented Dickey-Fuller) tests ensure appropriate data transformation before modeling.</li>
+            <li><strong>Monte Carlo uncertainty propagation:</strong> 2,000 simulations propagate forecast uncertainty to produce probability distributions with 95% confidence intervals.</li>
+          </ul>
+          <h3>Forecast Horizons</h3>
+          <div class="card" style="overflow-x: auto; margin: 1.25rem 0;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Horizon</th><th>Time Scale</th><th>Primary Use</th><th>Output</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Short (1&ndash;2 yr)</strong></td><td>1&ndash;2 years</td><td>Annual coastal management plans</td><td>Shoreline change forecast + risk map</td></tr>
+                <tr><td><strong>Medium (3&ndash;5 yr)</strong></td><td>3&ndash;5 years</td><td>Infrastructure planning</td><td>Vulnerability zones + KML layers</td></tr>
+                <tr><td><strong>Long (5+ yr)</strong></td><td>5+ years</td><td>Urban development &amp; policy</td><td>Land loss/gain projections</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Geospatial Outputs</h3>
+          <ul>
+            <li><strong>KML files:</strong> Vulnerability maps compatible with Google Earth Pro for visual exploration.</li>
+            <li><strong>GeoJSON layers:</strong> Interoperable format for integration with web GIS platforms and decision dashboards.</li>
+            <li><strong>5-tier risk classification:</strong> Very Low / Low / Moderate / High / Very High, computed for each coastal transect.</li>
+          </ul>
+          <h3>Commercialization Potential</h3>
+          <div class="card" style="border-left: 4px solid var(--teal); margin-top: 1rem;">
+            <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+              The long-term forecasting component forms the core of the SaaS commercialization model: government agencies and urban planners subscribing to <strong>annual strategic reports</strong>, while infrastructure developers access <strong>on-demand multi-year projections</strong> for specific coastal segments.
+            </p>
+            <p style="font-size: 1rem; line-height: 1.8;">
+              Market opportunity: <strong>Sri Lanka&rsquo;s 1,300 km coastline</strong> as the initial market, with scalability to South and Southeast Asian coastal nations sharing similar monsoonal erosion dynamics.
+            </p>
+          </div>
+          <div class="result-highlight">
+            <div class="rh-item"><div class="rh-val">SARIMA</div><div class="rh-label">Time-Series Model</div></div>
+            <div class="rh-item"><div class="rh-val">2,000</div><div class="rh-label">MC Simulations</div></div>
+            <div class="rh-item"><div class="rh-val">KML + GeoJSON</div><div class="rh-label">Geospatial Output</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- END-TO-END PIPELINE -->
+    <section class="content-section section-alt" id="domain-methodology">
+      <div class="container">
+        <div class="content-block">
+          <h2>&#9881;&#65039; End-to-End System Architecture</h2>
+          <p>The four components connect in a modular pipeline. Each component&rsquo;s outputs feed the next, creating a seamless flow from raw satellite data to actionable stakeholder insights:</p>
+          <div class="flow-container">
+            <div class="card flow-step"><div class="step-number">1</div><h4>Data Ingestion</h4><p>Satellite imagery, Copernicus Marine Services, ERA5 reanalysis</p></div>
+            <div class="flow-arrow">&#10140;</div>
+            <div class="card flow-step"><div class="step-number">2</div><h4>Morphological Analysis</h4><p>DSAS processing, Shoelace formula, shoreline geometry</p></div>
+            <div class="flow-arrow">&#10140;</div>
+            <div class="card flow-step"><div class="step-number">3</div><h4>Meteorological Analysis</h4><p>Wave, wind, current threshold detection</p></div>
+            <div class="flow-arrow">&#10140;</div>
+            <div class="card flow-step"><div class="step-number">4</div><h4>Dual-Threshold Ensemble</h4><p>ROC/Youden, Bayesian, Profile Likelihood, Mutual Information</p></div>
+          </div>
+          <div class="flow-container">
+            <div class="card flow-step"><div class="step-number">5</div><h4>ML Classification</h4><p>Random Forest, XGBoost, Gradient Boosting</p></div>
+            <div class="flow-arrow">&#10140;</div>
+            <div class="card flow-step"><div class="step-number">6</div><h4>Short-Term Forecast</h4><p>Daily / weekly / monthly risk predictions</p></div>
+            <div class="flow-arrow">&#10140;</div>
+            <div class="card flow-step"><div class="step-number">7</div><h4>Long-Term Forecast</h4><p>SARIMA, ensemble regression, multi-year projections</p></div>
+            <div class="flow-arrow">&#10140;</div>
+            <div class="card flow-step"><div class="step-number">8</div><h4>Risk Maps &amp; Dashboard</h4><p>KML, GeoJSON, stakeholder decision support</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGIES -->
+    <section class="content-section" id="domain-technologies" style="padding-top: 0;">
+      <div class="container">
+        <div class="content-block">
+          <h2>&#128187; Technologies Used</h2>
+          <div class="grid-3" style="margin-top: 1.5rem;">
+            <div class="card">
+              <div class="card-icon">&#128013;</div>
+              <h3>Python Ecosystem</h3>
+              <p>NumPy, Pandas, Matplotlib for data manipulation and publication-quality visualizations. End-to-end automated data pipeline.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">&#129302;</div>
+              <h3>Machine Learning</h3>
+              <p>Scikit-learn (Random Forest, LOO-CV, ROC), XGBoost, and Gradient Boosting for erosion classification. Statsmodels for SARIMA.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">&#128200;</div>
+              <h3>Time Series &amp; Statistics</h3>
+              <p>SARIMA models (AIC grid search), Mann&ndash;Whitney U, Cliff&rsquo;s Delta, Bootstrap resampling (2,000 iter), Monte Carlo simulation.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">&#127754;</div>
+              <h3>Ocean &amp; Climate Data</h3>
+              <p>Copernicus Marine Services (CMEMS) for wave, wind, and current data. ERA5 reanalysis from ECMWF for atmospheric variables.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">&#127758;</div>
+              <h3>Remote Sensing &amp; GIS</h3>
+              <p>DSAS for satellite-derived shoreline analysis. Google Earth Pro &amp; GIS for spatial visualization. Shoelace formula for area computation.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">&#128190;</div>
+              <h3>Geospatial Outputs</h3>
+              <p>KML files for Google Earth visualization. GeoJSON for web GIS integration. Interactive risk maps on the web-based dashboard.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section><!-- /domain -->
+
+  <div class="page-section-divider"></div>
+
+  <!-- ================================================================
+       MILESTONES PAGE
+       ================================================================ -->
+  <section id="milestones">
+    <span class="page-anchor-label">&#127919; Milestones</span>
+
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Project Assessments</span>
+        <h1>Milestones</h1>
+      </div>
+      <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#eef0f7"/></svg></div>
+    </div>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-desc">Select a milestone from the dropdown below to view assessment details, dates, and marks allocation.</p>
+        </div>
+
+        <div class="dropdown-group">
+
+          <div class="dropdown-item">
+            <input type="checkbox" id="ms1">
+            <label for="ms1" class="dropdown-toggle">
+              <span>&#128203; Project Proposal</span>
+              <span class="arrow">&#9660;</span>
+            </label>
+            <div class="dropdown-content">
+              <p>The project proposal outlines the initial research concept, problem statement, objectives, and proposed methodology for the CoastalAI intelligent system for coastal erosion forecasting. Developed in partnership with the Coast Conservation and Coastal Resource Management Department of Sri Lanka, this assessment evaluates the feasibility, novelty, and real-world applicability of the proposed approach.</p>
+              <div class="meta">
+                <span>&#128197; <strong>Date:</strong> February 2024</span>
+                <span>&#127942; <strong>Marks:</strong> 12%</span>
+                <span>&#128210; <strong>Type:</strong> Document + Presentation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown-item">
+            <input type="checkbox" id="ms2">
+            <label for="ms2" class="dropdown-toggle">
+              <span>&#128202; Progress Presentation 1</span>
+              <span class="arrow">&#9660;</span>
+            </label>
+            <div class="dropdown-content">
+              <p>First progress evaluation covering data collection from Copernicus Marine Services, ERA5 reanalysis, and DSAS shoreline processing. Demonstrates completion of the morphological and meteorological data ingestion pipeline, including satellite-derived shoreline analysis and environmental variable extraction for Sri Lanka&rsquo;s coastline.</p>
+              <div class="meta">
+                <span>&#128197; <strong>Date:</strong> June 2024</span>
+                <span>&#127942; <strong>Marks:</strong> 15%</span>
+                <span>&#128210; <strong>Type:</strong> Presentation + Demo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown-item">
+            <input type="checkbox" id="ms3">
+            <label for="ms3" class="dropdown-toggle">
+              <span>&#128202; Progress Presentation 2</span>
+              <span class="arrow">&#9660;</span>
+            </label>
+            <div class="dropdown-content">
+              <p>Second progress evaluation showcasing the dual-threshold detection implementation (morphological and meteorological), ensemble threshold methods (ROC/Youden, Bayesian Logistic, Profile Likelihood, Mutual Information), and short-term risk zone mapping prototype. Includes preliminary long-term SARIMA forecasting results and initial stakeholder feedback from the Coast Conservation Department.</p>
+              <div class="meta">
+                <span>&#128197; <strong>Date:</strong> October 2024</span>
+                <span>&#127942; <strong>Marks:</strong> 18%</span>
+                <span>&#128210; <strong>Type:</strong> Presentation + Demo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown-item">
+            <input type="checkbox" id="ms4">
+            <label for="ms4" class="dropdown-toggle">
+              <span>&#127941; Final Assessment</span>
+              <span class="arrow">&#9660;</span>
+            </label>
+            <div class="dropdown-content">
+              <p>Comprehensive final evaluation of the complete CoastalAI intelligent system including all four components: morphological threshold detection, meteorological threshold detection, short-term and long-term forecasting with risk zone mapping. Includes the web-based decision support dashboard, full technical documentation, and demonstration to the Coast Conservation Department.</p>
+              <div class="meta">
+                <span>&#128197; <strong>Date:</strong> January 2025</span>
+                <span>&#127942; <strong>Marks:</strong> 40%</span>
+                <span>&#128210; <strong>Type:</strong> Document + Presentation + Demo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown-item">
+            <input type="checkbox" id="ms5">
+            <label for="ms5" class="dropdown-toggle">
+              <span>&#127891; Viva Voce</span>
+              <span class="arrow">&#9660;</span>
+            </label>
+            <div class="dropdown-content">
+              <p>Individual viva voce examination where each team member defends their contribution to the project. Covers theoretical understanding of the threshold detection ensemble methods, forecasting models, geospatial risk mapping, and the system&rsquo;s real-world applicability for Sri Lanka&rsquo;s coastal management.</p>
+              <div class="meta">
+                <span>&#128197; <strong>Date:</strong> February 2025</span>
+                <span>&#127942; <strong>Marks:</strong> 15%</span>
+                <span>&#128210; <strong>Type:</strong> Oral Examination</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Timeline Visualization -->
+        <div class="section-header" style="margin-top: 4rem;">
+          <span class="section-label">Project Timeline</span>
+          <h2 class="section-title">Assessment Timeline</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item card">
+            <div class="timeline-date">February 2024</div>
+            <h3>Project Proposal</h3>
+            <p style="color: var(--text-body); font-size: 0.92rem;">Initial concept, problem statement &amp; proposed methodology</p>
+            <span class="timeline-marks">12% Marks</span>
+          </div>
+          <div class="timeline-item card">
+            <div class="timeline-date">June 2024</div>
+            <h3>Progress Presentation 1</h3>
+            <p style="color: var(--text-body); font-size: 0.92rem;">ERA5 data ingestion, DSAS shoreline processing &amp; meteorological feature engineering</p>
+            <span class="timeline-marks">15% Marks</span>
+          </div>
+          <div class="timeline-item card">
+            <div class="timeline-date">October 2024</div>
+            <h3>Progress Presentation 2</h3>
+            <p style="color: var(--text-body); font-size: 0.92rem;">Dual-threshold detection, ML classification &amp; initial short-term forecasting results</p>
+            <span class="timeline-marks">18% Marks</span>
+          </div>
+          <div class="timeline-item card">
+            <div class="timeline-date">January 2025</div>
+            <h3>Final Assessment</h3>
+            <p style="color: var(--text-body); font-size: 0.92rem;">Complete intelligent system, all 4 components, risk zone maps &amp; web dashboard</p>
+            <span class="timeline-marks">40% Marks</span>
+          </div>
+          <div class="timeline-item card">
+            <div class="timeline-date">February 2025</div>
+            <h3>Viva Voce</h3>
+            <p style="color: var(--text-body); font-size: 0.92rem;">Individual defense of contributions &amp; theoretical understanding</p>
+            <span class="timeline-marks">15% Marks</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </section><!-- /milestones -->
+
+  <div class="page-section-divider"></div>
+
+  <!-- ================================================================
+       DOCUMENTS PAGE
+       ================================================================ -->
+  <section id="documents">
+    <span class="page-anchor-label">&#128196; Documents</span>
+
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Project Documents</span>
+        <h1>Documents</h1>
+      </div>
+      <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#eef0f7"/></svg></div>
+    </div>
+
+    <section class="content-section">
+      <div class="container">
+        <p style="text-align: center; color: var(--text-body); max-width: 650px; margin: 0 auto 3rem; font-size: 1.05rem;">
+          All project documents are listed below. Available documents can be downloaded directly. Pending documents will be updated as they become available.
+        </p>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128220;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Project Charter</h3>
+            <p>Defines the project scope, objectives, stakeholders, deliverables, timeline, and resource allocation.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/project-charter.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128196;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Proposal Document</h3>
+            <p>Comprehensive research proposal detailing the literature review, research gap analysis, proposed ensemble threshold methodology, and expected outcomes.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/proposal-document.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128203;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Status Document 1</h3>
+            <p>First checklist and status report covering data collection from ERA5, Copernicus Marine Services, satellite imagery, and DSAS shoreline processing pipeline completion for Sri Lanka&rsquo;s coastline.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/status-document-1.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128203;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Status Document 2</h3>
+            <p>Second progress checklist documenting meteorological threshold ensemble results, dual-threshold validation outcomes, and ML classification model performance (XGBoost, Random Forest, Gradient Boosting).</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/status-document-2.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0 2rem;">
+          <span class="section-label">Final Documents</span>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem;">The final submission consists of 4 individual component documents plus the main consolidated report</p>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem; border-left: 3px solid var(--teal);">
+          <div class="doc-icon">&#128218;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Final Document &mdash; Main Report</h3>
+            <p>Complete consolidated report covering all four intelligent system components: shoreline morphology-based and meteorological-based threshold detection, short-term and long-term forecasting with risk zone mapping, and the web-based decision support dashboard for the Coast Conservation Department.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/final-main-report.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128209;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Final Document &mdash; Component 1: Shoreline Morphology-Based Threshold Detection</h3>
+            <p>Satellite-derived shoreline analysis using DSAS (187 transects), Shoelace formula for area computation, Google Earth Pro and GIS integration, and morphological threshold detection for erosion-onset classification.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/final-component-1.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128209;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Final Document &mdash; Component 2: Meteorological-Based Threshold Detection</h3>
+            <p>Dual-threshold ensemble approach using ERA5 and Copernicus Marine data. Four threshold methods (ROC/Youden, Bayesian Logistic, Profile Likelihood, Mutual Information). XGBoost, Random Forest, and Gradient Boosting classifiers with bootstrap stability (CV &lt; 0.03).</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/final-component-2.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128209;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Final Document &mdash; Component 3: Short-Term Forecasting &amp; Risk Zone Mapping</h3>
+            <p>Real-time shoreline change prediction using environmental forecast integration. Daily, weekly, and monthly risk zone mapping with GeoJSON/KML outputs. Automated alert generation for coastal management response.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/final-component-3.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem;">
+          <div class="doc-icon">&#128209;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Final Document &mdash; Component 4: Long-Term Forecasting &amp; Risk Zone Mapping</h3>
+            <p>SARIMA ensemble forecasting across seasonal and decadal horizons. Monte Carlo uncertainty propagation (2,000 simulations), per-transect vulnerability scoring, KML/GeoJSON geospatial output, and SaaS model integration for the Coast Conservation Department.</p>
+            <span class="doc-status available">Available</span>
+          </div>
+          <a href="docs/final-component-4.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0 2rem;">
+          <span class="section-label">Publication</span>
+        </div>
+
+        <div class="card doc-card" style="margin-bottom: 1.25rem; border-left: 3px solid var(--amber);">
+          <div class="doc-icon">&#128240;</div>
+          <div class="doc-info" style="flex: 1;">
+            <h3>Research Paper (IEEE Format)</h3>
+            <p>&ldquo;An Intelligent System for Coastal Erosion Forecasting and Resilient Infrastructure Planning: A Multi-Component AI Approach for Sri Lanka&rsquo;s Coastline&rdquo;</p>
+            <span class="doc-status pending">In Review</span>
+          </div>
+          <a href="docs/research-paper.pdf" class="download-btn">&#11015; Download</a>
+        </div>
+
+      </div>
+    </section>
+  </section><!-- /documents -->
+
+  <div class="page-section-divider"></div>
+
+  <!-- ================================================================
+       SLIDES PAGE
+       ================================================================ -->
+  <section id="slides">
+    <span class="page-anchor-label">&#128202; Slides &amp; Presentations</span>
+
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Presentation Decks</span>
+        <h1>Slides &amp; Presentations</h1>
+      </div>
+      <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#eef0f7"/></svg></div>
+    </div>
+
+    <section class="content-section">
+      <div class="container">
+        <p style="text-align: center; color: var(--text-body); max-width: 650px; margin: 0 auto 3rem; font-size: 1.05rem;">
+          All past and upcoming presentation slide decks. Download slides directly or view online.
+        </p>
+
+        <div class="slides-grid">
+
+          <div class="card slide-card">
+            <div class="slide-thumb">&#128202;</div>
+            <div style="flex: 1;">
+              <h3>Proposal Presentation</h3>
+              <p>Initial project proposal covering research problem, objectives, proposed methodology, and timeline.</p>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                <span class="doc-status available">Available</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">February 2024</span>
+              </div>
+              <a href="slides/proposal-presentation.pdf" class="download-btn" style="margin-top: 0.75rem;">&#11015; Download Slides</a>
+            </div>
+          </div>
+
+          <div class="card slide-card">
+            <div class="slide-thumb">&#128202;</div>
+            <div style="flex: 1;">
+              <h3>Progress Presentation 1</h3>
+              <p>Data pipeline completion, DSAS processing, Copernicus data ingestion, and feature engineering results.</p>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                <span class="doc-status available">Available</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">June 2024</span>
+              </div>
+              <a href="slides/progress-presentation-1.pdf" class="download-btn" style="margin-top: 0.75rem;">&#11015; Download Slides</a>
+            </div>
+          </div>
+
+          <div class="card slide-card">
+            <div class="slide-thumb">&#128202;</div>
+            <div style="flex: 1;">
+              <h3>Progress Presentation 2</h3>
+              <p>Ensemble threshold detection, dual-threshold validation, ML classification model performance, and initial short-term forecasting results.</p>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                <span class="doc-status available">Available</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">October 2024</span>
+              </div>
+              <a href="slides/progress-presentation-2.pdf" class="download-btn" style="margin-top: 0.75rem;">&#11015; Download Slides</a>
+            </div>
+          </div>
+
+          <div class="card slide-card">
+            <div class="slide-thumb">&#127942;</div>
+            <div style="flex: 1;">
+              <h3>Final Presentation</h3>
+              <p>Complete intelligent system demonstration: all four components, risk zone maps, long-term SARIMA forecasts, and the web-based decision support dashboard.</p>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                <span class="doc-status available">Available</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">January 2025</span>
+              </div>
+              <a href="slides/final-presentation.pdf" class="download-btn" style="margin-top: 0.75rem;">&#11015; Download Slides</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin: 4rem 0 2rem;">
+          <span class="section-label">Upcoming</span>
+          <h2 class="section-title" style="font-size: 1.8rem; margin-top: 1rem;">Future Presentations</h2>
+        </div>
+
+        <div class="slides-grid">
+          <div class="card slide-card" style="opacity: 0.7;">
+            <div class="slide-thumb" style="background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.15);">&#128197;</div>
+            <div style="flex: 1;">
+              <h3>Conference Presentation</h3>
+              <p>Presentation at an international conference on coastal engineering or environmental machine learning.</p>
+              <span class="doc-status pending">Upcoming</span>
+            </div>
+          </div>
+          <div class="card slide-card" style="opacity: 0.7;">
+            <div class="slide-thumb" style="background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.15);">&#128197;</div>
+            <div style="flex: 1;">
+              <h3>Workshop / Seminar</h3>
+              <p>Departmental or public workshop demonstrating the CoastalAI forecasting system to stakeholders.</p>
+              <span class="doc-status pending">Upcoming</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </section><!-- /slides -->
+
+  <div class="page-section-divider"></div>
+
+  <!-- ================================================================
+       ABOUT PAGE
+       ================================================================ -->
+  <section id="about">
+    <span class="page-anchor-label">&#128101; About Us</span>
+
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Our Team</span>
+        <h1>About Us</h1>
+      </div>
+      <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#eef0f7"/></svg></div>
+    </div>
+
+    <!-- Supervisor Section -->
+    <section class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Supervisor</span>
+          <h2 class="section-title">Project Supervisor</h2>
+        </div>
+
+        <div class="card supervisor-card">
+          <div class="avatar">&#128105;&#8205;&#127891;</div>
+          <div>
+            <h3>Dr. Supervisor Name</h3>
+            <div class="role">Senior Lecturer &mdash; Department of Computer Science</div>
+            <p style="color: var(--text-body); font-size: 0.92rem; margin-bottom: 0.5rem;">Expert in machine learning, environmental informatics, and data-driven coastal management systems.</p>
+            <div class="email">&#9993; supervisor@university.lk</div>
+          </div>
+        </div>
+
+        <div class="card supervisor-card">
+          <div class="avatar">&#128104;&#8205;&#127891;</div>
+          <div>
+            <h3>Dr. Co-Supervisor Name</h3>
+            <div class="role">Lecturer &mdash; Department of Environmental Science</div>
+            <p style="color: var(--text-body); font-size: 0.92rem; margin-bottom: 0.5rem;">Specialist in coastal geomorphology, remote sensing, and GIS-based environmental analysis.</p>
+            <div class="email">&#9993; cosupervisor@university.lk</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Members -->
+    <section class="content-section" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Research Team</span>
+          <h2 class="section-title">Group Members</h2>
+          <p class="section-desc">The dedicated team behind the CoastalAI intelligent system for coastal erosion forecasting and resilient infrastructure planning</p>
+        </div>
+        <div class="grid-4">
+          <div class="card team-card">
+            <div class="avatar">&#128104;&#8205;&#128187;</div>
+            <h3>Member 1</h3>
+            <div class="role">Team Leader / ML Engineer</div>
+            <p class="email">&#9993; member1@university.lk</p>
+            <p class="achievements"><strong style="color: var(--teal);">Component 2:</strong> Meteorological Threshold Detection &mdash; Developed the dual-threshold ensemble approach, implemented XGBoost/Random Forest/Gradient Boosting pipeline for meteorological erosion classification, and bootstrap stability validation (CV &lt; 0.03).</p>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">&#128105;&#8205;&#128187;</div>
+            <h3>Member 2</h3>
+            <div class="role">Data Engineer</div>
+            <p class="email">&#9993; member2@university.lk</p>
+            <p class="achievements"><strong style="color: var(--teal);">Component 1:</strong> Shoreline Morphology-Based Threshold Detection &mdash; Designed the pipeline integrating DSAS shoreline analysis, satellite-derived measurements, Shoelace formula computation, and Google Earth Pro/GIS spatial analysis.</p>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">&#128104;&#8205;&#128187;</div>
+            <h3>Member 3</h3>
+            <div class="role">Statistical Analyst</div>
+            <p class="email">&#9993; member3@university.lk</p>
+            <p class="achievements"><strong style="color: var(--teal);">Component 2:</strong> Meteorological Threshold Detection &mdash; Conducted statistical analysis using ROC/Youden, Bayesian Logistic, Profile Likelihood, and Mutual Information threshold methods. Validated dual-threshold approach with bootstrap stability testing.</p>
+          </div>
+          <div class="card team-card">
+            <div class="avatar">&#128105;&#8205;&#128187;</div>
+            <h3>Member 4</h3>
+            <div class="role">GIS / Visualization</div>
+            <p class="email">&#9993; member4@university.lk</p>
+            <p class="achievements"><strong style="color: var(--teal);">Components 3 &amp; 4:</strong> Short-Term &amp; Long-Term Forecasting &mdash; Implemented real-time risk zone mapping, SARIMA time-series models, Monte Carlo uncertainty propagation, and per-transect KML/GeoJSON vulnerability mapping.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="content-section" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Highlights</span>
+          <h2 class="section-title">Team Achievements</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="text-align: center; padding: 2rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">&#127942;</div>
+            <h3 style="font-size: 1.1rem; color: var(--text-heading); margin-bottom: 0.5rem;">SLASSCOM National Ingenuity Awards 2026</h3>
+            <p style="color: var(--text-body); font-size: 0.9rem;">Nominated for the SLASSCOM National Ingenuity Awards 2026, recognizing innovation in AI and technology for societal impact in Sri Lanka.</p>
+          </div>
+          <div class="card" style="text-align: center; padding: 2rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">&#127759;</div>
+            <h3 style="font-size: 1.1rem; color: var(--text-heading); margin-bottom: 0.5rem;">Government Partnership</h3>
+            <p style="color: var(--text-body); font-size: 0.9rem;">Developed in collaboration with the Coast Conservation &amp; Coastal Resource Management Department of Sri Lanka, ensuring real-world applicability.</p>
+          </div>
+          <div class="card" style="text-align: center; padding: 2rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">&#127919;</div>
+            <h3 style="font-size: 1.1rem; color: var(--text-heading); margin-bottom: 0.5rem;">85&ndash;95% Efficiency Gain</h3>
+            <p style="color: var(--text-body); font-size: 0.9rem;">End-to-end automation reduces manual coastal analysis time by 85&ndash;95%, enabling the Coast Conservation Department to monitor more coast with fewer resources.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section><!-- /about -->
+
+  <div class="page-section-divider"></div>
+
+  <!-- ================================================================
+       CONTACT PAGE
+       ================================================================ -->
+  <section id="contact">
+    <span class="page-anchor-label">&#9993; Contact Us</span>
+
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Get In Touch</span>
+        <h1>Contact Us</h1>
+      </div>
+      <div class="page-header-wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#eef0f7"/></svg></div>
+    </div>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div class="card contact-info-card">
+            <h3>Contact Information</h3>
+            <p style="color: var(--text-body); font-size: 0.95rem; margin-bottom: 2rem;">
+              Reach out to the CoastalAI research team for collaboration, questions, or feedback about our intelligent coastal erosion forecasting and infrastructure planning system.
+            </p>
+
+            <div class="contact-detail">
+              <div class="icon">&#9993;</div>
+              <div class="text">
+                <h4>General Email</h4>
+                <p>coastalai.research@university.lk</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="icon">&#128222;</div>
+              <div class="text">
+                <h4>Phone</h4>
+                <p>+94 11 XXX XXXX</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="icon">&#127963;</div>
+              <div class="text">
+                <h4>Department</h4>
+                <p>Department of Computer Science &amp; Software Engineering<br>Faculty of Computing</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="icon">&#128205;</div>
+              <div class="text">
+                <h4>Address</h4>
+                <p>SLIIT, New Kandy Road,<br>Malabe, Sri Lanka</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="icon">&#128337;</div>
+              <div class="text">
+                <h4>Office Hours</h4>
+                <p>Monday &ndash; Friday: 9:00 AM &ndash; 5:00 PM</p>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+              <h4 style="font-size: 0.95rem; color: var(--text-heading); margin-bottom: 1rem;">Team Members</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 1 &mdash; member1@university.lk</p>
+                <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 2 &mdash; member2@university.lk</p>
+                <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 3 &mdash; member3@university.lk</p>
+                <p style="font-size: 0.88rem; color: var(--text-muted);">&#128100; Member 4 &mdash; member4@university.lk</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-form-card">
+            <h3>&#9993; Send us a Message</h3>
+            <p style="color: var(--text-body); font-size: 0.92rem; margin-bottom: 1.5rem;">
+              Fill out the form below and we'll get back to you as soon as possible.
+            </p>
+            <div class="email-template">
+              <h4>General Email Template</h4>
+              <p>Visitors who prefer email can use this structure when contacting the team.</p>
+              <code>To: coastalai.research@university.lk
+Subject: CoastalAI Website Inquiry
+
+Name:
+Organization:
+Purpose of inquiry:
+Message:</code>
+            </div>
+
+            <form action="#" method="POST" onsubmit="return handleSubmit(event);">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject *</label>
+                <select id="subject" name="subject" required>
+                  <option value="" disabled selected>Select a subject...</option>
+                  <option value="collaboration">Research Collaboration</option>
+                  <option value="question">General Question</option>
+                  <option value="data">Data Request</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+              </div>
+              <button type="submit" class="form-submit">&#9993; Send Message</button>
+            </form>
+
+            <p id="formSuccess" style="display: none; margin-top: 1rem; padding: 1rem; background: rgba(13,148,136,0.08); border: 1px solid rgba(13,148,136,0.15); border-radius: 10px; color: var(--teal); text-align: center; font-weight: 600;">
+              &#10004; Thank you! Your message has been received. We'll respond shortly.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </section><!-- /contact -->
+
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-brand">&#127754; CoastalAI</div>
+          <p class="footer-text">Intelligent Coastal Erosion Forecasting &amp; Resilient Infrastructure Planning</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#domain">Domain</a></li>
+          <li><a href="#milestones">Milestones</a></li>
+          <li><a href="#documents">Documents</a></li>
+          <li><a href="#slides">Slides</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.5rem 0;">
+      <p class="footer-text" style="text-align: center;">&copy; 2025 CoastalAI Research Team. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#hero-top" class="back-to-top" title="Back to top">&#8593;</a>
+
+  <!-- ================================================================
+       SCRIPTS
+       ================================================================ -->
+  <script>
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+
+    // Close nav when a link is clicked on mobile
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('navLinks').classList.remove('show');
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function () {
+      var navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+      else { navbar.classList.remove('scrolled'); }
+      highlightActiveNav();
+    });
+
+    // Active nav highlight based on scroll position
+    var sections = ['home', 'domain', 'milestones', 'documents', 'slides', 'about', 'contact'];
+    function highlightActiveNav() {
+      var scrollPos = window.scrollY + 100;
+      var active = 'home';
+      sections.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top + window.scrollY <= scrollPos) {
+          active = id;
+        }
+      });
+      document.querySelectorAll('.nav-links a').forEach(function (a) {
+        a.classList.remove('active', 'active-section');
+        if (a.dataset.section === active) {
+          a.classList.add('active', 'active-section');
+        }
+      });
+    }
+    highlightActiveNav();
+
+    // Contact form
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('formSuccess').style.display = 'block';
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
+

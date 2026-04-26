@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "site": "coastal-ai",
+    "public": ".",
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/home",
+        "type": 301
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      ".git/**",
+      ".gitignore",
+      "node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}

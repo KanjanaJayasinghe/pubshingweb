@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "iot-buoy"
+  },
+  "targets": {
+    "iot-buoy": {
+      "hosting": {
+        "coastalai": ["coastal-ai"]
+      }
+    }
+  }
+}
